@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 import { INITIAL_PRODUCTS } from './data/products';
 import { AppViewMode, CartItem, FulfillmentMode, Product } from './types/store';
 import { usePWA } from './hooks/usePWA';
@@ -27,6 +28,16 @@ export function App() {
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [scannerModalOpen, setScannerModalOpen] = useState(false);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowBackToTop(window.scrollY > 240);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const { canNativeInstall, isInstalled, isOnline, triggerInstall } = usePWA();
 
@@ -279,6 +290,21 @@ export function App() {
           </div>
         </div>
       </footer>
+
+      {/* Back to Top Floating Button */}
+      <button
+        type="button"
+        aria-label="Volver arriba"
+        title="Volver arriba"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className={`fixed right-4 sm:right-6 bottom-20 xl:bottom-6 z-40 w-11 h-11 rounded-full bg-primary/90 hover:bg-secondary text-white shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 ease-out active:scale-95 ${
+          showBackToTop
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
+      >
+        <ArrowUp className="w-5 h-5" />
+      </button>
 
       {/* Toast Notification */}
       {toastMsg && (
