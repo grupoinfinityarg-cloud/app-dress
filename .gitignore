@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+stitch_assets
+stitch_fashion_pwa_e_commerce_store
+stitch_fashion_pwa_e_commerce_store.zip

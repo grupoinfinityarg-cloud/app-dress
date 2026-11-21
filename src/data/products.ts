@@ -1,0 +1,552 @@
+import { Product } from '../types/store';
+
+export const FALLBACK_IMAGE =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23e9eef7'/%3E%3Ctext x='200' y='245' text-anchor='middle' font-family='Georgia, serif' font-size='28' fill='%23376757'%3EVANGUARDIA%3C/text%3E%3Ctext x='200' y='278' text-anchor='middle' font-family='sans-serif' font-size='13' fill='%2345474a'%3EMODA %26 TIENDA%3C/text%3E%3C/svg%3E";
+
+export const INITIAL_PRODUCTS: Product[] = [
+  // ── FEMENINO & TALLES ESPECIALES ──────────────────────────────────────────
+  {
+    id: 'prod-palazzo',
+    sku: 'VNG-PAL-884',
+    barcode: '7798001008841',
+    name: 'Pantalón Sastrero Palazzo Tiro Alto',
+    subtitle: 'Sastrería Inclusiva • Curva 38 al 56',
+    category: 'femenino',
+    categoryLabel: 'Femenino',
+    price: 45000,
+    originalPrice: 52000,
+    description:
+      'Tiro alto con pinzas sastreras profundas y caída fluida. Pretina elastizada oculta con hasta +5 cm de tolerancia real.',
+    fabricNote: 'Gabardina italiana con elastómero 3%',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBKNV_JLG1NmitSQCADuEq3EE5maudNTiocXQTUk7y30817GAJX4s_QBRDTGI91V__Gk0scIylYyd3VUQpQ5QbdhcPrjrv5fnIHQm5GkJmny0JfYbHySCQm2E_YqVbzhepjomy4ZtaRlye2-SA7AHYsAkt4keyO2fRNupl4aAnxRwTKKmjkA40C31U2ju3me4zkf0Xs8PTDpXv7S9OERgEbpgDmktKQ1qVKVNE8NJA',
+    badge: 'Últimos 2 en Talle 52',
+    badgeVariant: 'alert',
+    isPlusSize: true,
+    isNewDrop: true,
+    colors: [
+      { name: 'Visón Arena', hex: '#d8cbb8' },
+      { name: 'Negro Grafito', hex: '#1a1c1f' },
+      { name: 'Verde Salvia', hex: '#376757' },
+    ],
+    sizes: [
+      { size: '38', salon: 2, deposito: 4, taller: 0 },
+      { size: '40', salon: 3, deposito: 5, taller: 2 },
+      { size: '44', salon: 4, deposito: 5, taller: 6 },
+      { size: '48', salon: 2, deposito: 8, taller: 10, isPlus: true },
+      { size: '52', salon: 1, deposito: 2, taller: 12, isPlus: true },
+      { size: '54', salon: 2, deposito: 3, taller: 8, isPlus: true },
+      { size: '56', salon: 2, deposito: 3, taller: 6, isPlus: true },
+    ],
+    measurements: [
+      { segment: 'Cintura (Contorno)', rest: '92 cm', expanded: '97 cm', tolerance: '+5 cm pretina elástica' },
+      { segment: 'Cadera Contorno Mayor', rest: '118 cm', expanded: '123 cm', tolerance: 'Holgura palazzo natural' },
+      { segment: 'Tiro Delantero / Trasero', rest: '34 / 43 cm', expanded: '—', tolerance: 'Tiro alto anatómico' },
+      { segment: 'Largo Entrepierna', rest: '108 cm', expanded: '—', tolerance: 'Apto ruedo express' },
+    ],
+  },
+  {
+    id: 'prod-remera-heavy',
+    sku: 'VNG-HVY-301',
+    barcode: '7798001003013',
+    name: 'Remera Oversized Heavy Cotton 280g',
+    subtitle: 'Esenciales Unisex • S a 5XL',
+    category: 'femenino',
+    categoryLabel: 'Femenino',
+    price: 26000,
+    description:
+      'Algodón peinado de gramaje pesado 280g con caída estructurada. Corte boxy moderno con amplitud real en hombros y sisa.',
+    fabricNote: '100% Algodón Orgánico Peinado 280g',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCekpBL1bA3VspieBnDujvr3b29AlrStcq9uYonIx8omBaKgE0IVlOHW8JHT-VA3ut3cvDIspcvDXNz6h8_Pqyil40TWbEHHvBssi_1M3dF6mqztMoGuQW47ADJSWXkYdgZKNfH9KeqJxd3ajjnHxIr2gi-3Z3HKGipYihTZyNiy4odRYWdWdhfKcG1iotJeq8Jsf54M9JsZH6ebHOcBV0bEM8GNhNx-wj5ALSQ9r0',
+    badge: 'DROP 01',
+    badgeVariant: 'dark',
+    isPlusSize: true,
+    isNewDrop: true,
+    colors: [
+      { name: 'Camel Crudo', hex: '#c8ab83' },
+      { name: 'Verde Salvia', hex: '#376757' },
+      { name: 'Negro Tinta', hex: '#121417' },
+    ],
+    sizes: [
+      { size: 'S', salon: 4, deposito: 6, taller: 0 },
+      { size: 'M', salon: 5, deposito: 8, taller: 0 },
+      { size: 'L', salon: 6, deposito: 10, taller: 0 },
+      { size: 'XL', salon: 4, deposito: 7, taller: 2 },
+      { size: '3XL', salon: 3, deposito: 5, taller: 4, isPlus: true },
+      { size: '4XL', salon: 2, deposito: 4, taller: 4, isPlus: true },
+      { size: '5XL', salon: 2, deposito: 3, taller: 5, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-blazer-salvia',
+    sku: 'VNG-BLZ-210',
+    barcode: '7798001002108',
+    name: 'Blazer Lino Sastrero Botón Único',
+    subtitle: 'Colección Atelier • Talle S a 4XL',
+    category: 'femenino',
+    categoryLabel: 'Femenino',
+    price: 78500,
+    description:
+      'Sastrería relajada con forrería respirable de viscosa. Espalda con fuelle oculto para máxima libertad de movimiento en talles especiales.',
+    fabricNote: 'Lino europeo 70% / Viscosa 30%',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCytnzeMHLOg91LfzQjU60uE43qS4KbJ4P0YhrEJsYbQLnWm9agR1haZU-cC9M5AE98kLFKygMkBUyXIYuJ29VdDo4bi1uPAX8q1KBZEqYk8fSjr6bU-0MJ9MNCQBcYu7m_kr9hl0oExjoDNAy5alMhQltzAtxt7um23VX7gaV5nObHI8WIX2doVtkui9TXnAoLqSOIaDGZ6x-TSuZkdc3fytrKrFvkRJRP88lI-JQ',
+    badge: 'Curva Extendida',
+    badgeVariant: 'emerald',
+    isPlusSize: true,
+    colors: [
+      { name: 'Verde Salvia', hex: '#376757' },
+      { name: 'Arena Lino', hex: '#d9cfc1' },
+      { name: 'Azul Medianoche', hex: '#0b1b39' },
+    ],
+    sizes: [
+      { size: 'M', salon: 2, deposito: 4, taller: 0 },
+      { size: 'L', salon: 3, deposito: 5, taller: 0 },
+      { size: 'XL', salon: 3, deposito: 4, taller: 2 },
+      { size: '2XL', salon: 2, deposito: 4, taller: 3, isPlus: true },
+      { size: '3XL', salon: 2, deposito: 3, taller: 4, isPlus: true },
+      { size: '4XL', salon: 1, deposito: 3, taller: 4, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-vestido-midi',
+    sku: 'VNG-VST-412',
+    barcode: '7798001004126',
+    name: 'Vestido Midi Plisado Fluido',
+    subtitle: 'Línea Curvy & Atelier • 42 a 56',
+    category: 'femenino',
+    categoryLabel: 'Femenino',
+    price: 64000,
+    description:
+      'Escote en V estilizador, cintura regulable con lazo interno y falda plisada con movimiento orgánico. No marca ni se adhiere.',
+    fabricNote: 'Crepe sedoso anti-arrugas',
+    image:
+      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80',
+    badge: 'Talles Especiales',
+    badgeVariant: 'emerald',
+    isPlusSize: true,
+    colors: [
+      { name: 'Verde Bosque', hex: '#2e5e4e' },
+      { name: 'Terracota Suave', hex: '#b66a50' },
+      { name: 'Negro Nocturno', hex: '#121417' },
+    ],
+    sizes: [
+      { size: '42', salon: 2, deposito: 4, taller: 0 },
+      { size: '46', salon: 3, deposito: 5, taller: 2, isPlus: true },
+      { size: '50', salon: 2, deposito: 4, taller: 3, isPlus: true },
+      { size: '54', salon: 2, deposito: 3, taller: 4, isPlus: true },
+      { size: '56', salon: 1, deposito: 2, taller: 4, isPlus: true },
+    ],
+  },
+
+  // ── MASCULINO & TALLES ESPECIALES ─────────────────────────────────────────
+  {
+    id: 'prod-camisa-oxford',
+    sku: 'VNG-CAM-118',
+    barcode: '7798001001187',
+    name: 'Camisa Oxford Relaxed Fit',
+    subtitle: 'Sastrería Casual Hombre • S a 5XL',
+    category: 'masculino',
+    categoryLabel: 'Masculino',
+    price: 42000,
+    description:
+      'Tejido Oxford pre-lavado que no encoge. Moldería anatómica con tabla trasera para mayor comodidad en hombros y abdomen.',
+    fabricNote: 'Algodón Oxford 100% doble torsión',
+    image:
+      'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80',
+    badge: 'Hasta 5XL',
+    badgeVariant: 'emerald',
+    isPlusSize: true,
+    isNewDrop: true,
+    colors: [
+      { name: 'Celeste Hielo', hex: '#b8c6ed' },
+      { name: 'Blanco Marfil', hex: '#f8f7f5' },
+      { name: 'Verde Salvia', hex: '#376757' },
+    ],
+    sizes: [
+      { size: 'S', salon: 3, deposito: 5, taller: 0 },
+      { size: 'M', salon: 4, deposito: 7, taller: 0 },
+      { size: 'L', salon: 5, deposito: 8, taller: 0 },
+      { size: 'XL', salon: 4, deposito: 6, taller: 2 },
+      { size: '2XL', salon: 3, deposito: 5, taller: 3, isPlus: true },
+      { size: '3XL', salon: 2, deposito: 4, taller: 4, isPlus: true },
+      { size: '4XL', salon: 2, deposito: 3, taller: 4, isPlus: true },
+      { size: '5XL', salon: 1, deposito: 2, taller: 5, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-chino-hombre',
+    sku: 'VNG-CHN-504',
+    barcode: '7798001005048',
+    name: 'Pantalón Chino Gabardina Elastizada',
+    subtitle: 'Urbano Masculino • Talles 40 al 56',
+    category: 'masculino',
+    categoryLabel: 'Masculino',
+    price: 48500,
+    description:
+      'Corte recto contemporáneo con cintura confort elastizada. Bolsillos reforzados y terminación sastrera lista para uso diario.',
+    fabricNote: 'Gabardina 97% Algodón / 3% Elastano',
+    image:
+      'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=700&q=80',
+    badge: 'Curva 40-56',
+    badgeVariant: 'dark',
+    isPlusSize: true,
+    colors: [
+      { name: 'Khaki Tostado', hex: '#b69b74' },
+      { name: 'Azul Marino', hex: '#0b1b39' },
+      { name: 'Negro Carbón', hex: '#1a1c1f' },
+    ],
+    sizes: [
+      { size: '40', salon: 3, deposito: 4, taller: 0 },
+      { size: '42', salon: 4, deposito: 6, taller: 0 },
+      { size: '44', salon: 4, deposito: 6, taller: 0 },
+      { size: '48', salon: 3, deposito: 5, taller: 2, isPlus: true },
+      { size: '52', salon: 2, deposito: 4, taller: 3, isPlus: true },
+      { size: '56', salon: 2, deposito: 3, taller: 4, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-hoodie-hombre',
+    sku: 'VNG-HOD-620',
+    barcode: '7798001006205',
+    name: 'Buzo Hoodie Fleece Pesado 400g',
+    subtitle: 'Streetwear Masculino • M a 5XL',
+    category: 'masculino',
+    categoryLabel: 'Masculino',
+    price: 53000,
+    description:
+      'Frisa invisible premium de 400g con capucha doble forrada y puños de rib firme. Ideal para media estación e invierno.',
+    fabricNote: 'Frisa peinada 85% Algodón / 15% Poliéster',
+    image:
+      'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80',
+    badge: 'Nuevo Ingreso',
+    badgeVariant: 'dark',
+    isPlusSize: true,
+    isNewDrop: true,
+    colors: [
+      { name: 'Gris Melange', hex: '#8b9098' },
+      { name: 'Negro', hex: '#121417' },
+      { name: 'Verde Salvia', hex: '#376757' },
+    ],
+    sizes: [
+      { size: 'M', salon: 4, deposito: 6, taller: 0 },
+      { size: 'L', salon: 5, deposito: 8, taller: 0 },
+      { size: 'XL', salon: 4, deposito: 6, taller: 0 },
+      { size: '3XL', salon: 3, deposito: 4, taller: 3, isPlus: true },
+      { size: '4XL', salon: 2, deposito: 3, taller: 4, isPlus: true },
+      { size: '5XL', salon: 2, deposito: 2, taller: 4, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-bomber-tecnica',
+    sku: 'VNG-BMB-709',
+    barcode: '7798001007097',
+    name: 'Campera Bomber Técnica Repelente',
+    subtitle: 'Outerwear Masculino • S a 3XL',
+    category: 'masculino',
+    categoryLabel: 'Masculino',
+    price: 89000,
+    description:
+      'Nylon técnico mate resistente al agua y al viento, con cierres metálicos YKK y bolsillo interno porta-celular.',
+    fabricNote: 'Nylon técnico hidrófugo 100%',
+    image:
+      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=80',
+    isPlusSize: true,
+    colors: [
+      { name: 'Oliva Oscuro', hex: '#2e4238' },
+      { name: 'Negro', hex: '#121417' },
+    ],
+    sizes: [
+      { size: 'S', salon: 2, deposito: 3, taller: 0 },
+      { size: 'M', salon: 3, deposito: 5, taller: 0 },
+      { size: 'L', salon: 4, deposito: 5, taller: 0 },
+      { size: 'XL', salon: 3, deposito: 4, taller: 0 },
+      { size: '2XL', salon: 2, deposito: 3, taller: 2, isPlus: true },
+      { size: '3XL', salon: 2, deposito: 3, taller: 3, isPlus: true },
+    ],
+  },
+
+  // ── CALZADO (INCLUYE HORMA ANCHA / TALLES ESPECIALES Y BEBÉ) ───────────────
+  {
+    id: 'prod-chelsea-cuero',
+    sku: 'VNG-CLZ-901',
+    barcode: '7798001009015',
+    name: 'Botinetas Chelsea Cuero Vacuno',
+    subtitle: 'Calzado Artesanal • Horma Normal & Ancha',
+    category: 'calzado',
+    categoryLabel: 'Calzado',
+    price: 72000,
+    description:
+      'Cuero vacuno curtido vegetal con elásticos reforzados y suela de caucho cosida a mano. Disponible hasta talle 45 horma ancha.',
+    fabricNote: '100% Cuero Vacuno Flor + Suela Caucho',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBkCWYIe6sE9_7bnqOlEowYfPMZPuAG_ujDqsa3gUm0E0IRA1umHAOqt_GxUOX_Thhw5NYlkw5aOUr2RY0sDVplDGu-8K0UnX5vbaIvAy-JU6P0uCiVgZ8FXFxfsDKqXh0U92BQdMHyjmAQ0c6jiGBCggoVZ5OOKleYumSIOai1XMTsX_cOAioBAtXr16brqdVzJLUkuqIysjJqzfv8b_6TXyUxNBHytMLlWYA_ywE',
+    badge: 'Cuero Vacuno',
+    badgeVariant: 'neutral',
+    isPlusSize: true,
+    isNewDrop: true,
+    colors: [
+      { name: 'Suela Cognac', hex: '#9c5a2d' },
+      { name: 'Negro Mate', hex: '#121417' },
+    ],
+    sizes: [
+      { size: '36', salon: 2, deposito: 4, taller: 0 },
+      { size: '38', salon: 3, deposito: 5, taller: 0 },
+      { size: '40', salon: 3, deposito: 5, taller: 0 },
+      { size: '42', salon: 2, deposito: 4, taller: 0 },
+      { size: '44', salon: 2, deposito: 3, taller: 2, isPlus: true },
+      { size: '45 Ancho', salon: 1, deposito: 3, taller: 2, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-sneakers-vibram',
+    sku: 'VNG-SNK-915',
+    barcode: '7798001009152',
+    name: 'Sneakers Urbanas Suela Anatómica',
+    subtitle: 'Calzado Unisex • Talles 35 al 46',
+    category: 'calzado',
+    categoryLabel: 'Calzado',
+    price: 68000,
+    description:
+      'Plantilla viscoelástica removible apta para plantillas ortopédicas. Empeine amplio y suela ultraliviana de alto agarre.',
+    fabricNote: 'Gamuza hidrofugada + Mesh técnico',
+    image:
+      'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=700&q=80',
+    badge: 'Hasta Talle 46',
+    badgeVariant: 'emerald',
+    isPlusSize: true,
+    colors: [
+      { name: 'Crudo / Salvia', hex: '#e5e0d8' },
+      { name: 'Grafito', hex: '#34383e' },
+    ],
+    sizes: [
+      { size: '36', salon: 3, deposito: 5, taller: 0 },
+      { size: '38', salon: 4, deposito: 6, taller: 0 },
+      { size: '40', salon: 4, deposito: 6, taller: 0 },
+      { size: '42', salon: 3, deposito: 5, taller: 0 },
+      { size: '44', salon: 2, deposito: 4, taller: 0 },
+      { size: '45', salon: 2, deposito: 3, taller: 2, isPlus: true },
+      { size: '46', salon: 1, deposito: 2, taller: 2, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-mocasin-gamuza',
+    sku: 'VNG-MOC-930',
+    barcode: '7798001009305',
+    name: 'Mocasines Gamuza Soft Empeine Alto',
+    subtitle: 'Calzado Confort • Horma Especial',
+    category: 'calzado',
+    categoryLabel: 'Calzado',
+    price: 59500,
+    description:
+      'Diseñados con calce generoso en empeine y ancho metatarsal. Interior forrado en badana natural sin costuras internas.',
+    fabricNote: 'Gamuza natural + Forro badana',
+    image:
+      'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=700&q=80',
+    badge: 'Horma Ancha',
+    badgeVariant: 'emerald',
+    isPlusSize: true,
+    colors: [
+      { name: 'Arena', hex: '#c8b8a2' },
+      { name: 'Tabaco', hex: '#6e472b' },
+    ],
+    sizes: [
+      { size: '37', salon: 2, deposito: 3, taller: 0 },
+      { size: '39', salon: 3, deposito: 4, taller: 0 },
+      { size: '41', salon: 3, deposito: 4, taller: 0 },
+      { size: '43 Ancho', salon: 2, deposito: 3, taller: 2, isPlus: true },
+      { size: '45 Ancho', salon: 2, deposito: 2, taller: 2, isPlus: true },
+    ],
+  },
+
+  // ── BEBÉ & NIÑOS ──────────────────────────────────────────────────────────
+  {
+    id: 'prod-bebe-set',
+    sku: 'VNG-BEB-101',
+    barcode: '7798001001019',
+    name: 'Set Body + Ranita Algodón Pima',
+    subtitle: 'Línea Bebé Orgánica • RN a 24m',
+    category: 'bebe',
+    categoryLabel: 'Bebé & Niños',
+    price: 24500,
+    description:
+      'Algodón Pima hipoalergénico libre de tintes agresivos. Broches snap níquel-free y cintura suave que no comprime.',
+    fabricNote: '100% Algodón Pima Orgánico Certificado',
+    image:
+      'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=700&q=80',
+    badge: 'Algodón Pima',
+    badgeVariant: 'emerald',
+    isPlusSize: false,
+    isNewDrop: true,
+    colors: [
+      { name: 'Avena Natural', hex: '#eae3d5' },
+      { name: 'Salvia Bebé', hex: '#8fb3a4' },
+    ],
+    sizes: [
+      { size: '0-3m', salon: 4, deposito: 8, taller: 0 },
+      { size: '3-6m', salon: 5, deposito: 8, taller: 0 },
+      { size: '6-12m', salon: 4, deposito: 7, taller: 0 },
+      { size: '12-18m', salon: 3, deposito: 6, taller: 0 },
+      { size: '24m', salon: 3, deposito: 5, taller: 0 },
+    ],
+  },
+  {
+    id: 'prod-bebe-cardigan',
+    sku: 'VNG-BEB-114',
+    barcode: '7798001001149',
+    name: 'Cardigan Tejido Punto Hilo Bebé',
+    subtitle: 'Tejido Artesanal • 3m a 3 años',
+    category: 'bebe',
+    categoryLabel: 'Bebé & Niños',
+    price: 29000,
+    description:
+      'Punto arroz respirable con botones de madera natural. Ideal para todo el año sin generar estática ni picazón.',
+    fabricNote: 'Hilo de algodón peinado hipoalergénico',
+    image:
+      'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=700&q=80',
+    isPlusSize: false,
+    colors: [
+      { name: 'Crudo Leche', hex: '#f4efe6' },
+      { name: 'Verde Musgo', hex: '#4f6d5d' },
+    ],
+    sizes: [
+      { size: '3-6m', salon: 3, deposito: 5, taller: 0 },
+      { size: '6-12m', salon: 4, deposito: 6, taller: 0 },
+      { size: '12-18m', salon: 3, deposito: 5, taller: 0 },
+      { size: '24m', salon: 2, deposito: 4, taller: 0 },
+      { size: '3 años', salon: 2, deposito: 4, taller: 0 },
+    ],
+  },
+  {
+    id: 'prod-bebe-calzado',
+    sku: 'VNG-BEB-128',
+    barcode: '7798001001286',
+    name: 'Zapatitos Primeros Pasos Cuero Blando',
+    subtitle: 'Calzado Bebé • Talles 16 al 22',
+    category: 'bebe',
+    categoryLabel: 'Bebé & Niños',
+    price: 22000,
+    description:
+      'Suela flexible antideslizante respetuosa del desarrollo plantar. Ajuste con velcro anatómico para empeine gordito.',
+    fabricNote: 'Cuero napa ultra blando',
+    image:
+      'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=700&q=80',
+    badge: 'Primeros Pasos',
+    badgeVariant: 'neutral',
+    isPlusSize: false,
+    colors: [
+      { name: 'Camel', hex: '#c59b6d' },
+      { name: 'Marfil', hex: '#f3eee5' },
+    ],
+    sizes: [
+      { size: '16', salon: 3, deposito: 4, taller: 0 },
+      { size: '18', salon: 4, deposito: 5, taller: 0 },
+      { size: '20', salon: 3, deposito: 5, taller: 0 },
+      { size: '22', salon: 2, deposito: 4, taller: 0 },
+    ],
+  },
+
+  // ── ACCESORIOS (INCLUYE TALLES ESPECIALES) ────────────────────────────────
+  {
+    id: 'prod-tote-lienzo',
+    sku: 'VNG-ACC-701',
+    barcode: '7798001007011',
+    name: 'Tote Bag Lienzo Pesado & Cuero',
+    subtitle: 'Accesorios Boutique • Talle Único',
+    category: 'accesorios',
+    categoryLabel: 'Accesorios',
+    price: 34000,
+    description:
+      'Lona de algodón de 16 oz con manijas de cuero vaqueta cosidas y remachadas. Capacidad para notebook 16" y bolsillo interno.',
+    fabricNote: 'Lienzo 16 oz + Cuero Vaqueta',
+    image:
+      'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80',
+    badge: 'Best Seller',
+    badgeVariant: 'dark',
+    isPlusSize: false,
+    isNewDrop: true,
+    colors: [
+      { name: 'Ecru / Suela', hex: '#ece6da' },
+      { name: 'Negro / Negro', hex: '#1a1c1f' },
+    ],
+    sizes: [{ size: 'Único', salon: 8, deposito: 14, taller: 0 }],
+  },
+  {
+    id: 'prod-cinturon-cuero',
+    sku: 'VNG-ACC-715',
+    barcode: '7798001007158',
+    name: 'Cinturón Cuero Curtido Vegetal',
+    subtitle: 'Marroquinería • Hasta 135 cm (Especial)',
+    category: 'accesorios',
+    categoryLabel: 'Accesorios',
+    price: 21500,
+    description:
+      'Cuero argentino macizo de 3.5 mm con hebilla de bronce cepillado. Curva completa incluyendo largos especiales 125 y 135 cm.',
+    fabricNote: '100% Cuero Suela Argentino',
+    image:
+      'https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=700&q=80',
+    badge: 'Largo Especial 135cm',
+    badgeVariant: 'emerald',
+    isPlusSize: true,
+    colors: [
+      { name: 'Habano', hex: '#7a4928' },
+      { name: 'Negro', hex: '#121417' },
+    ],
+    sizes: [
+      { size: '95cm', salon: 3, deposito: 5, taller: 0 },
+      { size: '105cm', salon: 4, deposito: 6, taller: 0 },
+      { size: '115cm', salon: 3, deposito: 5, taller: 0 },
+      { size: '125cm', salon: 2, deposito: 4, taller: 2, isPlus: true },
+      { size: '135cm', salon: 2, deposito: 3, taller: 2, isPlus: true },
+    ],
+  },
+  {
+    id: 'prod-gorra-salvia',
+    sku: 'VNG-ACC-740',
+    barcode: '7798001007400',
+    name: 'Gorra Gabardina Minimal Salvia',
+    subtitle: 'Accesorios Unisex • Regulable',
+    category: 'accesorios',
+    categoryLabel: 'Accesorios',
+    price: 16500,
+    description:
+      'Gabardina lavada con hebilla metálica posterior regulable. Copa media desestructurada de calce universal.',
+    fabricNote: '100% Algodón Gabardina Lavada',
+    image:
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=80',
+    isPlusSize: false,
+    colors: [
+      { name: 'Verde Salvia', hex: '#376757' },
+      { name: 'Piedra', hex: '#c8c4bc' },
+      { name: 'Negro', hex: '#121417' },
+    ],
+    sizes: [{ size: 'Único', salon: 10, deposito: 18, taller: 0 }],
+  },
+  {
+    id: 'prod-panuelo-seda',
+    sku: 'VNG-ACC-752',
+    barcode: '7798001007523',
+    name: 'Pañuelo Seda Editorial 90x90',
+    subtitle: 'Accesorios Boutique • Ed. Limitada',
+    category: 'accesorios',
+    categoryLabel: 'Accesorios',
+    price: 19800,
+    description:
+      'Roulotté hecho a mano con estampa botánica exclusiva de la campaña Warm Urban 2025.',
+    fabricNote: 'Sarga de seda natural',
+    image:
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80',
+    isPlusSize: false,
+    colors: [
+      { name: 'Salvia & Marfil', hex: '#4f7a6a' },
+      { name: 'Ocre & Tinta', hex: '#b58447' },
+    ],
+    sizes: [{ size: '90x90', salon: 5, deposito: 9, taller: 0 }],
+  },
+];
+
+export const formatARS = (amount: number): string =>
+  '$' + Math.round(amount).toLocaleString('es-AR');
+
+export const WHATSAPP_NUMBER = '5492236779934';
