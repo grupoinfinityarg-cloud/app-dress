@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Download,
   QrCode,
@@ -70,8 +70,25 @@ export const DemoBar: React.FC<DemoBarProps> = ({
   isOnline,
   isInstalled,
 }) => {
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const updateHeight = () => {
+      document.documentElement.style.setProperty('--header-height', `${el.offsetHeight}px`);
+    };
+    updateHeight();
+    const ro = new ResizeObserver(updateHeight);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 bg-surface/95 backdrop-blur-xl border-b border-outline-variant/40">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-40 bg-surface/95 backdrop-blur-xl border-b border-outline-variant/40"
+    >
       {/* Top Demo & PWA Status Strip */}
       <div className="bg-primary text-on-primary px-3 sm:px-6 py-1.5 text-[11px] flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2 overflow-x-auto scrollbar-none">

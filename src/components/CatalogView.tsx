@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Store,
   Truck,
@@ -73,6 +73,21 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [couponInput, setCouponInput] = useState('');
   const [couponApplied, setCouponApplied] = useState(false);
+  const [isFilterSticky, setIsFilterSticky] = useState(false);
+  const filterSentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const sentinel = filterSentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFilterSticky(!entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: '-110px 0px 0px 0px' }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
 
   // Track selected color & size per product card
   const [cardSelections, setCardSelections] = useState<
@@ -443,11 +458,21 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
               </div>
             </div>
 
-            {/* Category Horizontal Pill Scroller + Sort */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            {/* Sentinel para detectar estado sticky de los filtros */}
+            <div ref={filterSentinelRef} className="h-px w-full -mb-4 pointer-events-none" aria-hidden="true" />
+
+            {/* Category Horizontal Pill Scroller + Sort (Sticky con animación suave) */}
+            <div
+              style={{ top: 'var(--header-height, 108px)' }}
+              className={`sticky z-30 transition-all duration-300 ease-out flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                isFilterSticky
+                  ? 'bg-surface/95 backdrop-blur-xl py-2.5 px-3 -mx-3 sm:px-4 sm:-mx-4 rounded-b-2xl border-b border-outline-variant/50 shadow-[0_10px_28px_-8px_rgba(18,20,23,0.12)]'
+                  : 'py-1 bg-transparent border-b border-transparent'
+              }`}
+            >
               <nav
                 aria-label="Filtro de categorías"
-                className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none"
+                className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none"
               >
                 {CATEGORIES.map((cat) => {
                   const active = selectedCategory === cat.id;
@@ -456,11 +481,11 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
                       key={cat.id}
                       type="button"
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`whitespace-nowrap px-4 h-[38px] rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 shrink-0 ${
+                      className={`whitespace-nowrap px-4 h-[38px] rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ease-out active:scale-95 flex items-center gap-1.5 shrink-0 ${
                         active
                           ? cat.isSpecial
-                            ? 'bg-secondary text-on-secondary shadow-sm'
-                            : 'bg-primary text-on-primary shadow-sm'
+                            ? 'bg-secondary text-on-secondary shadow-sm scale-[1.02]'
+                            : 'bg-primary text-on-primary shadow-sm scale-[1.02]'
                           : cat.isSpecial
                           ? 'bg-secondary-container/70 text-on-secondary-container border border-secondary/30 hover:bg-secondary-container'
                           : 'bg-surface-container hover:bg-surface-container-high text-on-surface'
@@ -477,7 +502,7 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
                 aria-label="Ordenar catálogo"
-                className="h-[38px] px-3 rounded-full bg-surface-container-lowest border border-outline-variant/60 text-xs font-semibold text-on-surface outline-none focus:border-primary self-start sm:self-auto"
+                className="h-[38px] px-3 rounded-full bg-surface-container-lowest border border-outline-variant/60 text-xs font-semibold text-on-surface outline-none focus:border-primary self-start sm:self-auto transition-colors"
               >
                 <option value="featured">Ordenar: Destacados</option>
                 <option value="plus-first">Priorizar Talles Especiales</option>
@@ -522,7 +547,10 @@ export const CatalogView: React.FC<CatalogViewProps> = ({
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div
+                key={`${selectedCategory}-${sortBy}`}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-slide"
+              >
                 {filteredProducts.map((product) => {
                   const sel = getSelection(product);
                   const activeColor = product.colors[sel.colorIdx] || product.colors[0];
